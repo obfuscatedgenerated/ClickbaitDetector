@@ -23,3 +23,7 @@ Used to load checkpoints and then fully save the model in the case that you aban
 ### generate.py
 
 Used to predict the chance of a headline being clickbait using loaded training data.
+
+### plot.py
+
+Used to plot the model as a diagram. You'll need to [install GraphViz](https://graphviz.org/download/) to your machine and add it to the PATH.
