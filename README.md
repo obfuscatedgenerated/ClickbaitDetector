@@ -4,7 +4,7 @@ A clunky and naïve Tensorflow implementation of a clickbait classifier.
 
 ## Setup
 
-1. Clone this repo with `git clone https://github.com/obfuscatedgenerated/clickbaitdetector.git`
+1. Clone this repo with `git clone https://github.com/obfuscatedgenerated/ClickbaitDetector.git`
 
 2. OPTIONAL (recommended) - Create and activate a venv with `python -m venv env` then `./env/Scripts/Activate`
 
