@@ -19,6 +19,7 @@ print(
 
 print("Dataset Credit: https://www.kaggle.com/amananandrai")
 
+EPOCHS = 50
 
 def create_model(features):
     print("Constructing hub layer...")
@@ -62,8 +63,6 @@ def main():
     train_data_labels = np.array(train_data_labels)
     print("Features:", train_data_features)
     print("Labels:", train_data_labels)
-    train_data_new = np.array([train_data_features, train_data_labels])
-    print("New:", train_data_new)
 
     # Create the model
     print("Creating model...")
@@ -95,16 +94,20 @@ def main():
     partial_x_train = train_data_features[10000:]
     y_val = train_data_labels[:10000]
     partial_y_train = train_data_labels[10000:]
-    print("Training for 10 epochs...")
+    print("Training for ",str(EPOCHS)," epochs...")
     model.fit(
         partial_x_train,
         partial_y_train,
         batch_size=512,
-        epochs=10,
+        epochs=EPOCHS,
         callbacks=[cp_callback],
         validation_data=(x_val, y_val),
         verbose=1,
     )
+    model.evaluate(x_val, y_val, verbose=2)
+    print("Finished training, saving model...")
+    model.save("./clickbait_model/model")
+    print("Saved!")
 
 
 if __name__ == "__main__":
