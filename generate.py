@@ -2,6 +2,14 @@ import tensorflow as tf
 import pandas as pd
 import numpy as np
 
+NORM_MIN = 0
+NORM_MAX = 1
+SCALAR_MIN = 0
+SCALAR_MAX = 1
+
+def normalise(value):
+    return (((value - NORM_MIN)/(NORM_MAX - NORM_MIN))*(SCALAR_MAX - SCALAR_MIN)) + SCALAR_MIN
+
 def main():
     # Load the model
     train_data = pd.read_csv(
@@ -16,7 +24,7 @@ def main():
     #tf.keras.utils.plot_model(model)
     while True:
         results = model.predict([input("Input a headline: ")])
-        print("Probability of being clickbait: ", results[0][0])
+        print("Probability of being clickbait: ", normalise(results[0][0]))
 
 if __name__ == "__main__":
     main()
