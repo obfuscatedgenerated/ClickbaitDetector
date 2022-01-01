@@ -18,7 +18,7 @@ Used for setup and training. You can adjust the epoch count by modifying the EPO
 
 ### quicksave.py
 
-Depreacted due to KeyboardInturrept catching. Used to load checkpoints and then fully save the model in the case that you abandon training early.
+Deprecated due to KeyboardInturrept catching. Used to load checkpoints and then fully save the model in the case that you abandon training early.
 
 ### generate.py
 
