@@ -44,12 +44,16 @@ scores = gen.predict(titles)
 #print("Clickbait probabilities: ",scores)
 
 avg = np.mean(scores)
+peakidx = np.argmax(scores)
+peak = scores[peakidx][0]
+peakname = titles[peakidx]
 sums = np.sum(scores)
 
 print("\n\n\n")
 print("==============================")
-print("Channel ID: ",id)
-print("Channel Name: ",name)
-print("Average clickbait probability: ",avg)
-print("Total clickbait probability: ",sums)
+print("Channel ID:",id)
+print("Channel Name:",name)
+print("Average clickbait probability:",avg)
+print("Peak clickbait probability:",peak,"on video:",peakname)
+print("Total clickbait probability:",sums)
 print("==============================")
