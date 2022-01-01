@@ -41,9 +41,6 @@ for i in plist:
 
 scores = gen.predict(titles)
 
-for i in range(0,scores.size):
-    scores[i][0] = gen.normalise(scores[i][0])
-
 #print("Clickbait probabilities: ",scores)
 
 avg = np.mean(scores)
