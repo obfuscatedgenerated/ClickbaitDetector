@@ -1,4 +1,5 @@
 import os
+import sys
 
 import pandas as pd
 import numpy as np
@@ -20,6 +21,8 @@ print(
 print("Dataset Credit: https://www.kaggle.com/amananandrai")
 
 EPOCHS = 50
+
+cansave = False
 
 def create_model(features):
     print("Constructing hub layer...")
@@ -50,6 +53,7 @@ def create_model(features):
 
 
 def main():
+    global cansave, model
     # Mount the training data
     train_data = pd.read_csv(
         "./clickbait_data.csv", names=["headline", "clickbait"], skiprows=1
@@ -94,6 +98,7 @@ def main():
     partial_x_train = train_data_features[10000:]
     y_val = train_data_labels[:10000]
     partial_y_train = train_data_labels[10000:]
+    cansave = True
     print("Training for ",str(EPOCHS)," epochs...")
     model.fit(
         partial_x_train,
@@ -111,4 +116,18 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        if cansave:
+            print("Got KeyboardInterrupt, saving & exiting...")
+            print("Saving model...")
+            model.save("./clickbait_model/model")
+            print("Saved!")
+            print("Exiting...")
+        else:
+            print("Got KeyboardInterrupt, exiting...")
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)

@@ -36,6 +36,7 @@ def create_model():
     return model
 
 def main():
+    print("Deprecated.")
     checkpoint_path = "clickbait_model/cp.ckpt"
     checkpoint_dir = os.path.dirname(checkpoint_path)
     print("Creating model...")
