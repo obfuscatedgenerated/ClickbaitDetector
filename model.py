@@ -1,6 +1,10 @@
 import tensorflow as tf
 from tensorflow.keras import layers
 import tensorflow_hub as hub
+from keras import backend as K
+
+def relu_max(x):
+    return K.relu(x, max_value=1)
 
 def create_model():
     print("Constructing hub layer...")
@@ -21,7 +25,7 @@ def create_model():
     # model.add(tf.keras.Input(shape=(1,), dtype=tf.string))
     model.add(hub_layer)
     model.add(tf.keras.layers.Dense(16, activation="relu"))
-    model.add(tf.keras.layers.Dense(1, activation="relu"))
+    model.add(tf.keras.layers.Dense(1, activation=relu_max))
     model.summary()
     print("Compiling...")
     model.compile(loss=tf.losses.MeanSquaredError(), optimizer=tf.optimizers.Adam())
