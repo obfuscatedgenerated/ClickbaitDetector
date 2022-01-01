@@ -11,6 +11,8 @@ import tensorflow as tf
 from tensorflow.keras import layers
 import tensorflow_hub as hub
 
+from model import *
+
 
 print("Version: ", tf.__version__)
 print("Eager mode: ", tf.executing_eagerly())
@@ -23,33 +25,6 @@ print("Dataset Credit: https://www.kaggle.com/amananandrai")
 EPOCHS = 50
 
 cansave = False
-
-def create_model(features):
-    print("Constructing hub layer...")
-    print(
-        "This may take some time if you haven't run this before since the model needs to download."
-    )
-    model_url = "https://tfhub.dev/google/nnlm-en-dim50-with-normalization/2"
-    hub_layer = hub.KerasLayer(
-        model_url, input_shape=[], dtype=tf.string, trainable=True
-    )
-    print(hub_layer(features[:3]))
-    print("Finishing...")
-    model = tf.keras.Sequential()
-    # model = tf.keras.Sequential([layers.Dense(64), layers.Dense(1)])
-    # body = tf.keras.Sequential([layers.Dense(64), layers.Dense(1)])
-    # preprocessed_inputs = preprocessing_head(inputs)
-    # result = body(preprocessed_inputs)
-    # model = tf.keras.Model(inputs, result)
-    # model.add(tf.keras.Input(shape=(1,), dtype=tf.string))
-    model.add(hub_layer)
-    model.add(tf.keras.layers.Dense(16, activation="relu"))
-    model.add(tf.keras.layers.Dense(1))
-    model.summary()
-    print("Compiling...")
-    model.compile(loss=tf.losses.MeanSquaredError(), optimizer=tf.optimizers.Adam())
-    print("Done!")
-    return model
 
 
 def main():
@@ -70,7 +45,7 @@ def main():
 
     # Create the model
     print("Creating model...")
-    model = create_model(train_data_features)
+    model = create_model()
 
 
     # Checkpoint path
