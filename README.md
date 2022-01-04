@@ -28,6 +28,6 @@ Used to predict the chance of a headline being clickbait using loaded training d
 
 Used to plot the model as a diagram. You'll need to [install GraphViz](https://graphviz.org/download/) to your machine and add it to the PATH.
 
-## youtube.py
+### youtube.py
 
 Used to scrape titles of a YouTube channel by ID to test for clickbait. Needs tokens.json to be configured.
