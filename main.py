@@ -62,7 +62,8 @@ def main():
     #print("Untrained model, accuracy: {:5.2f}%".format(100 * acc))
 
     # Loads the weights
-    # model.load_weights(checkpoint_path)
+    if os.path.isdir(checkpoint_path):
+        model.load_weights(checkpoint_path)
 
     # Re-evaluate the model
     # loss, acc = model.evaluate(train_data_features, train_data_labels, verbose=2)
