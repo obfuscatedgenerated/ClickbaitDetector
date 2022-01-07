@@ -10,7 +10,7 @@ f.close()
 
 api = Api(api_key=ytkey)
 
-id = input("Input a channel ID: ")
+id = input("Input a channel ID/Name: ")
 
 # Get the channel's uploads playlist ID, usually the same as the channel, but best to be sure
 #chanreq = requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="+id+"&fields=items(contentDetails%2Cid%2Csnippet(country%2Cdescription%2Ctitle)%2Cstatistics%2Cstatus)%2CnextPageToken%2CpageInfo%2CprevPageToken%2CtokenPagination&key="+ytkey)
@@ -27,7 +27,7 @@ id = input("Input a channel ID: ")
 if id.startswith("UC"):
     chan = api.get_channel_info(channel_id=id).items[0].to_dict()
 else:
-    chan = api.get_channel_info(for_username=id).items[0].to_dict()
+    chan = api.get_channel_info(channel_name=id).items[0].to_dict()
 name = chan["snippet"]["title"]
 chanuploads = chan["contentDetails"]["relatedPlaylists"]["uploads"]
 print("Uploads Playlist ID: ",chanuploads)
