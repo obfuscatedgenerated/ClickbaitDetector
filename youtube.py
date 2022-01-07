@@ -23,7 +23,11 @@ id = input("Input a channel ID: ")
 #    print(chandat)
 
 # Get the channel's uploads playlist ID, usually the same as the channel, but best to be sure
-chan = api.get_channel_info(channel_id=id).items[0].to_dict()
+# Use ID or username
+if id.startswith("UC"):
+    chan = api.get_channel_info(channel_id=id).items[0].to_dict()
+else:
+    chan = api.get_channel_info(for_username=id).items[0].to_dict()
 name = chan["snippet"]["title"]
 chanuploads = chan["contentDetails"]["relatedPlaylists"]["uploads"]
 print("Uploads Playlist ID: ",chanuploads)
