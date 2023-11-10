@@ -6,3 +6,4 @@ python-youtube>=0.8.1
 tensorflowjs>=3.12.0
 numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
 wheel>=0.38.0 # not directly required, pinned by Snyk to avoid a vulnerability
+grpcio>=1.53.2 # not directly required, pinned by Snyk to avoid a vulnerability
